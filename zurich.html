@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>BER News Ticker mit fester Uhrzeit</title>
+
+<style>
+  body {
+    margin: 0;
+    background: transparent;
+    overflow: hidden;
+    font-family: Calibri, sans-serif;
+  }
+
+  /* Obere Leiste */
+  .headline-bar {
+    position: fixed;
+    bottom: 60px;
+    width: 100%;
+    height: 30px;
+    background-color: #636060;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: bold;
+    border-bottom: 2px solid black;
+    box-sizing: border-box;
+  }
+
+  .headline-bar::before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: white;
+  }
+
+  /* Ticker */
+  .ticker {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #61168a;
+    display: flex;
+    align-items: center;
+    border-top: 4px solid white;
+    border-bottom: 4px solid white;
+    box-sizing: border-box;
+  }
+
+  /* Uhr */
+  .clock {
+    background-color: black;
+    color: white;
+    font-size: 30px;
+    height: 100%;
+    width: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  /* Nachrichtenbereich */
+  .messages {
+    position: relative;
+    flex: 1;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .message {
+    position: absolute;
+    color: white;
+    font-size: 36px;
+    font-weight: bold;
+    opacity: 0;
+    visibility: hidden;
+    animation: fadeCycle 190s infinite;
+  }
+
+  /* 20 Nachrichten mit 9.5 Sekunden Abstand */
+  .message:nth-child(1)  { animation-delay: 0s; }
+  .message:nth-child(2)  { animation-delay: 9.5s; }
+  .message:nth-child(3)  { animation-delay: 19s; }
+  .message:nth-child(4)  { animation-delay: 28.5s; }
+  .message:nth-child(5)  { animation-delay: 38s; }
+  .message:nth-child(6)  { animation-delay: 47.5s; }
+  .message:nth-child(7)  { animation-delay: 57s; }
+  .message:nth-child(8)  { animation-delay: 66.5s; }
+  .message:nth-child(9)  { animation-delay: 76s; }
+  .message:nth-child(10) { animation-delay: 85.5s; }
+  .message:nth-child(11) { animation-delay: 95s; }
+  .message:nth-child(12) { animation-delay: 104.5s; }
+  .message:nth-child(13) { animation-delay: 114s; }
+  .message:nth-child(14) { animation-delay: 123.5s; }
+  .message:nth-child(15) { animation-delay: 133s; }
+  .message:nth-child(16) { animation-delay: 142.5s; }
+  .message:nth-child(17) { animation-delay: 152s; }
+  .message:nth-child(18) { animation-delay: 161.5s; }
+  .message:nth-child(19) { animation-delay: 171s; }
+  .message:nth-child(20) { animation-delay: 180.5s; }
+
+  @keyframes fadeCycle {
+    0% { opacity: 0; visibility: hidden; }
+
+    /* schnelles Einblenden */
+    0.26% { opacity: 1; visibility: visible; }
+
+    /* 8 Sekunden sichtbar */
+    4.47% { opacity: 1; visibility: visible; }
+
+    /* 0.5 Sekunden weich ausfaden */
+    4.73% { opacity: 0; visibility: visible; }
+
+    /* 1 Sekunde Pause */
+    5% { opacity: 0; visibility: hidden; }
+
+    100% { opacity: 0; visibility: hidden; }
+  }
+</style>
+</head>
+
+<body>
+
+<div class="headline-bar">
+  Berlin Airport News
+</div>
+
+<div class="ticker">
+  <div class="clock" id="clock">00:00:00</div>
+
+  <div class="messages">
+    <div class="message">🔴 Willkommen am Flughafen Berlin</div>
+    <div class="message">🔴 Heutige Flugbewegungen: 540</div>
+    <div class="message">🔴 Im April 2.136.000 Passagiere am BER</div>
+    <div class="message">🔴 15.849 Flugbewegungen im April</div>
+    <div class="message">🔴 United gestern und heute mit viel Verspätung</div>
+    <div class="message">🔴 Brussels Airlines "TinTin" 20:00 Uhr aus BRU</div>
+    <div class="message">🔴 Sun Express "VfB Stuttgart" 18:45 Uhr aus STR</div>
+    <div class="message">🔴 Wetter am BER/EDDB: 11 bis 21 Grad und sonnig</div>
+    <div class="message">🔴 Eurowings heute mit 68 Flugbewegungen am BER</div>
+    <div class="message">🔴 Delta heute mit fast 3 Stunden Verspätung</div>
+
+    <div class="message">🔴 Welcome to Berlin Airport</div>
+    <div class="message">🔴 Todays flight movements: 540</div>
+    <div class="message">🔴 In April 2,136,000 passengers at BER Airport</div>
+    <div class="message">🔴 15,849 movements at BER Airport in April</div>
+    <div class="message">🔴 Heavy delay for United yesterday and today</div>
+    <div class="message">🔴 Brussels Airlines "TinTin" 8:00 pm from BRU</div>
+    <div class="message">🔴 Sun Express "VfB Stuttgart" 6:45 pm from STR</div>
+    <div class="message">🔴 Weather at BER/EDDB: 11 to 21 degrees and sunny</div>
+    <div class="message">🔴 Eurowings with 68 movements at BER Airport</div>
+    <div class="message">🔴 Delta with almost 3 hours delay today</div>
+  </div>
+</div>
+
+<script>
+  function updateClockBerlin() {
+    const clock = document.getElementById('clock');
+    const now = new Date();
+    const options = {
+      timeZone: 'Europe/Berlin',
+      hour12: false,
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit'
+    };
+    clock.textContent = now.toLocaleTimeString('de-DE', options);
+  }
+
+  updateClockBerlin();
+  setInterval(updateClockBerlin, 1000);
+</script>
+
+</body>
+</html>
